@@ -2,8 +2,8 @@ namespace BankSystem.Models;
 
 public abstract class Account
 {
-    public string OwnerName { get; set; }
-    public decimal Balance { get; set; }
+    public string OwnerName { get; }
+    protected decimal Balance { get; set; }
     
     public Account(string ownerName, decimal balance)
     {
@@ -11,7 +11,7 @@ public abstract class Account
         this.Balance = balance;
     }
 
-    public abstract void Withdraw(decimal amount);
+    public abstract decimal Withdraw(decimal amount);
 
     public decimal Deposit(decimal amount)
     {
@@ -19,9 +19,9 @@ public abstract class Account
 
         return this.Balance;
     }
-    
+
     public virtual void ShowBalance()
     {
-        Console.WriteLine($"Your balance: {this.Balance}");
+        Console.WriteLine($"You have ${this.Balance} in your balance.");
     }
 }
