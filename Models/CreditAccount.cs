@@ -6,11 +6,25 @@ public class CreditAccount : Account
     {
     }
 
-    public override void Withdraw(decimal amount)
+    public override decimal Withdraw(decimal amount)
     {
-        if (Balance < -5000)
+        Console.WriteLine($"You have sent a withdrawal request for ${amount}.");
+        Console.Write("This is the answer to the request: ");
+        if (Balance - amount < -5000)
             Console.WriteLine("Credit limit exceeded.");
         else
+        {
             Balance -= amount;
+            Console.WriteLine("Successful.");
+            Console.WriteLine(Balance < 0 ? $"You can get ${5000 + Balance} credit again."
+                : $"You can get ${5000} credit.");
+        }
+
+        return Balance;
+    }
+
+    public override void ShowBalance()
+    {
+        Console.WriteLine($"You have ${Balance} in your credit account.");
     }
 }
